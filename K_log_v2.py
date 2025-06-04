@@ -1,5 +1,4 @@
 import sys
-sys.path.append('C:/Users/Emre/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0/LocalCache/local-packages/Python312/site-packages')
 from pynput import keyboard
 
 current_word = ""
