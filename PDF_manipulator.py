@@ -31,8 +31,8 @@ def extract_table_data(pdf_path, keywords):
     return result
 
 # Kullanım
-pdf_path_2023 = "C:/Users/Emre/OneDrive/Desktop/working/27101748_2023ylsytercihtablosuguncel.pdf"
-pdf_path_2024 = "C:/Users/Emre/OneDrive/Desktop/working/2024ylsytercihtablosu.pdf"
+pdf_path_2023 = "path_1"
+pdf_path_2024 = "path_2"
 keywords = ["Elektrik Elektronik Mühendisliği", "toplam kontenjan"]
 
 # 2023 PDF dosyasını analiz et
