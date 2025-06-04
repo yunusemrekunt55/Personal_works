@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import sqlite3
 from datetime import datetime
+from collections import Counter
 
 # BBC'den veri çek
 r = requests.get("https://www.bbc.com/news")
@@ -41,3 +42,43 @@ for headline in headlines:
 conn.commit()
 
 print("✅ Veriler SQLite veritabanına kaydedildi.\n")
+
+
+conn = sqlite3.connect("bbc_news.db")
+cursor = conn.cursor()
+
+print("📊 En uzun başlık:")
+cursor.execute("SELECT headline, LENGTH(headline) as len FROM news ORDER BY len DESC LIMIT 1")
+print(cursor.fetchone())
+
+print("\n📌 En sık tekrar eden başlıklar:")
+cursor.execute("""
+SELECT headline, COUNT(*) as count 
+FROM news 
+GROUP BY headline 
+HAVING count > 1 
+ORDER BY count DESC
+""")
+for row in cursor.fetchall():
+    print(row)
+
+print("\n📅 Tarihe göre haber gruplama:")
+cursor.execute("""
+SELECT DATE(scraped_at) as tarih, COUNT(*) as adet 
+FROM news 
+GROUP BY tarih
+""")
+for row in cursor.fetchall():
+    print(row)
+
+# Kelime sıklığı analizi (basit örnek)
+
+
+cursor.execute("SELECT headline FROM news")
+headlines = [row[0] for row in cursor.fetchall()]
+words = " ".join(headlines).lower().split()
+word_freq = Counter(words)
+
+print("\n🔠 En çok geçen kelimeler (ilk 10):")
+for word, count in word_freq.most_common(10):
+    print(f"{word}: {count}")
