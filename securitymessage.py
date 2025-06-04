@@ -30,9 +30,9 @@ else:
     exit()
 
 # Ayarlar
-gmail_user = 'beyy58097@gmail.com'
-gmail_password = 'ftad scpz mqeo dulj'  # Normal şifre değil! Uygulama şifresi kullan.
-to = 'yemre_8@hotmail.com'
+gmail_user = 'user mail'
+gmail_password = 'password'  # google will create a password for this application
+to = 'your mail'
 
 # Sistem bilgisi
 hostname = socket.gethostname()
